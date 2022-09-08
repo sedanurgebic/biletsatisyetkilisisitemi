@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ucakModelStoreContainer" CdmEntityContainer="ucakEntities3">
+    <EntitySetMapping Name="firmalar">
+      <EntityTypeMapping TypeName="ucakModel.firmalar">
+        <MappingFragment StoreEntitySet="firmalar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="firma_adi" ColumnName="firma_adi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kullanicilar">
+      <EntityTypeMapping TypeName="ucakModel.kullanicilar">
+        <MappingFragment StoreEntitySet="kullanicilar">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="ad" ColumnName="ad" />
+          <ScalarProperty Name="soyad" ColumnName="soyad" />
+          <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+          <ScalarProperty Name="kayit_tarihi" ColumnName="kayit_tarihi" />
+          <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="yolcular">
+      <EntityTypeMapping TypeName="ucakModel.yolcular">
+        <MappingFragment StoreEntitySet="yolcular">
+          <ScalarProperty Name="fotograf" ColumnName="fotograf" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="yolcu_ad" ColumnName="yolcu_ad" />
+          <ScalarProperty Name="yolcu_soyad" ColumnName="yolcu_soyad" />
+          <ScalarProperty Name="yolcu_cinsiyet" ColumnName="yolcu_cinsiyet" />
+          <ScalarProperty Name="yolcu_dogumyili" ColumnName="yolcu_dogumyili" />
+          <ScalarProperty Name="nereden" ColumnName="nereden" />
+          <ScalarProperty Name="nereye" ColumnName="nereye" />
+          <ScalarProperty Name="firma_kodu" ColumnName="firma_kodu" />
+          <ScalarProperty Name="yolcu_koltukno" ColumnName="yolcu_koltukno" />
+          <ScalarProperty Name="yolcu_kayit_tarihi" ColumnName="yolcu_kayit_tarihi" />
+          <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

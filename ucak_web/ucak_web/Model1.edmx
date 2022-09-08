@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ucakModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="firmalar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firma_adi" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="kullanici_adi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="50" />
+          <Property Name="kayit_tarihi" Type="datetime" />
+          <Property Name="isdeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="yolcular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="yolcu_ad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="yolcu_soyad" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="yolcu_cinsiyet" Type="nvarchar" MaxLength="50" />
+          <Property Name="yolcu_dogumyili" Type="int" Nullable="false" />
+          <Property Name="nereden" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="nereye" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="firma_kodu" Type="int" Nullable="false" />
+          <Property Name="yolcu_koltukno" Type="int" Nullable="false" />
+          <Property Name="yolcu_kayit_tarihi" Type="datetime" />
+          <Property Name="fotograf" Type="nvarchar(max)" />
+          <Property Name="Isdeleted" Type="bit" />
+        </EntityType>
+        <Association Name="FK_yolcular_firmalar">
+          <End Role="firmalar" Type="Self.firmalar" Multiplicity="1" />
+          <End Role="yolcular" Type="Self.yolcular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firmalar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="yolcular">
+              <PropertyRef Name="firma_kodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ucakModelStoreContainer">
+          <EntitySet Name="firmalar" EntityType="Self.firmalar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="yolcular" EntityType="Self.yolcular" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_yolcular_firmalar" Association="Self.FK_yolcular_firmalar">
+            <End Role="firmalar" EntitySet="firmalar" />
+            <End Role="yolcular" EntitySet="yolcular" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ucakModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="firmalar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firma_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="yolcular" Relationship="Self.FK_yolcular_firmalar" FromRole="firmalar" ToRole="yolcular" />
+        </EntityType>
+        <EntityType Name="kullanicilar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kullanici_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sifre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="kayit_tarihi" Type="DateTime" Precision="3" />
+          <Property Name="isdeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="yolcular">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="yolcu_ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yolcu_soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="yolcu_cinsiyet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="yolcu_dogumyili" Type="Int32" Nullable="false" />
+          <Property Name="nereden" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nereye" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="firma_kodu" Type="Int32" Nullable="false" />
+          <Property Name="yolcu_koltukno" Type="Int32" Nullable="false" />
+          <Property Name="yolcu_kayit_tarihi" Type="DateTime" Precision="3" />
+          <Property Name="Isdeleted" Type="Boolean" />
+          <NavigationProperty Name="firmalar" Relationship="Self.FK_yolcular_firmalar" FromRole="yolcular" ToRole="firmalar" />
+          <Property Name="fotograf" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_yolcular_firmalar">
+          <End Role="firmalar" Type="Self.firmalar" Multiplicity="1" />
+          <End Role="yolcular" Type="Self.yolcular" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="firmalar">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="yolcular">
+              <PropertyRef Name="firma_kodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ucakEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="firmalar" EntityType="Self.firmalar" />
+          <EntitySet Name="kullanicilar" EntityType="Self.kullanicilar" />
+          <EntitySet Name="yolcular" EntityType="Self.yolcular" />
+          <AssociationSet Name="FK_yolcular_firmalar" Association="Self.FK_yolcular_firmalar">
+            <End Role="firmalar" EntitySet="firmalar" />
+            <End Role="yolcular" EntitySet="yolcular" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ucakModelStoreContainer" CdmEntityContainer="ucakEntities3">
+          <EntitySetMapping Name="firmalar">
+            <EntityTypeMapping TypeName="ucakModel.firmalar">
+              <MappingFragment StoreEntitySet="firmalar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firma_adi" ColumnName="firma_adi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kullanicilar">
+            <EntityTypeMapping TypeName="ucakModel.kullanicilar">
+              <MappingFragment StoreEntitySet="kullanicilar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="kullanici_adi" ColumnName="kullanici_adi" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="kayit_tarihi" ColumnName="kayit_tarihi" />
+                <ScalarProperty Name="isdeleted" ColumnName="isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="yolcular">
+            <EntityTypeMapping TypeName="ucakModel.yolcular">
+              <MappingFragment StoreEntitySet="yolcular">
+                <ScalarProperty Name="fotograf" ColumnName="fotograf" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="yolcu_ad" ColumnName="yolcu_ad" />
+                <ScalarProperty Name="yolcu_soyad" ColumnName="yolcu_soyad" />
+                <ScalarProperty Name="yolcu_cinsiyet" ColumnName="yolcu_cinsiyet" />
+                <ScalarProperty Name="yolcu_dogumyili" ColumnName="yolcu_dogumyili" />
+                <ScalarProperty Name="nereden" ColumnName="nereden" />
+                <ScalarProperty Name="nereye" ColumnName="nereye" />
+                <ScalarProperty Name="firma_kodu" ColumnName="firma_kodu" />
+                <ScalarProperty Name="yolcu_koltukno" ColumnName="yolcu_koltukno" />
+                <ScalarProperty Name="yolcu_kayit_tarihi" ColumnName="yolcu_kayit_tarihi" />
+                <ScalarProperty Name="Isdeleted" ColumnName="Isdeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
